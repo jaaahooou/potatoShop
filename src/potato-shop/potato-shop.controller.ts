@@ -1,4 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
+import { GetListOfPRoductsResponse, ShopItem } from 'src/interfaces/shop';
+import { ShopService } from './../shop/shop.service';
 
 @Controller('potato-shop')
-export class PotatoShopController {}
+export class PotatoShopController {
+  constructor(@Inject(ShopService) private shopService: ShopService) {}
+
+  @Get('/')
+  getListOfProducts(): GetListOfPRoductsResponse {
+    return this.shopService.getProducts();
+  }
+}
