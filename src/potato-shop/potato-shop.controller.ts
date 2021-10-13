@@ -1,6 +1,6 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { GetListOfPRoductsResponse, ShopItem } from 'src/interfaces/shop';
-import { ShopService } from './../shop/shop.service';
+import { ShopService } from './potato-shop.service';
 
 @Controller('potato-shop')
 export class PotatoShopController {
