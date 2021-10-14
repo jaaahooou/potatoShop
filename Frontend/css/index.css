@@ -1,0 +1,51 @@
+body {
+  background-color: rgb(34, 24, 24);
+  color: grey;
+}
+
+.contact {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  background-image: url("../img/logo/logo.png");
+  height: 200px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.products {
+  margin: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.productWrap {
+  margin-bottom: 10px;
+}
+
+.productBackground {
+  background-image: url("../img/products/potato-salat.jpg");
+  height: 150px;
+  width: 70%;
+  background-position: center;
+  background-size: cover;
+  margin: auto;
+}
+
+.buyButton,
+.productName,
+.productDescription,
+.productPrice {
+  margin: auto;
+  text-align: center;
+  width: 50%;
+}
+
+.buyButton {
+  background-color: rgb(134, 15, 189);
+  border: 1px solid black;
+  margin-top: 10px;
+}
