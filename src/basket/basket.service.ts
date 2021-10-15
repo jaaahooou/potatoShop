@@ -1,13 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import {
   AddPRoductToBasketResponse,
+  listProductsInBasketResponse,
   RemoveProductFromBasketResponse,
 } from 'src/interfaces/basket';
 import { AddPRoductDto } from './dto/add-product.dto';
+import { ShopService } from './../potato-shop/potato-shop.service';
 
 @Injectable()
 export class BasketService {
   private items: AddPRoductDto[] = [];
+
+  constructor(@Inject(ShopService) private shopService: ShopService) {}
 
   add(item: AddPRoductDto): AddPRoductToBasketResponse {
     const { count, name } = item;
@@ -15,7 +19,8 @@ export class BasketService {
       typeof name !== 'string' ||
       typeof count !== 'number' ||
       name === '' ||
-      count < 1
+      count < 1 ||
+      !this.shopService.hasProduct(name)
     ) {
       return {
         isSuccess: false,
@@ -47,5 +52,9 @@ export class BasketService {
     return {
       isSuccess: true,
     };
+  }
+
+  list(): listProductsInBasketResponse {
+    return this.items;
   }
 }

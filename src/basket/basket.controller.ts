@@ -11,6 +11,7 @@ import { AddPRoductDto } from './dto/add-product.dto';
 import { BasketService } from './basket.service';
 import {
   AddPRoductToBasketResponse,
+  listProductsInBasketResponse,
   RemoveProductFromBasketResponse,
 } from 'src/interfaces/basket';
 
@@ -27,5 +28,10 @@ export class BasketController {
     @Param('index') index: string,
   ): RemoveProductFromBasketResponse {
     return this.basketService.remove(Number(index));
+  }
+
+  @Get('/')
+  listProductsInBasket(): listProductsInBasketResponse {
+    return this.basketService.list();
   }
 }
