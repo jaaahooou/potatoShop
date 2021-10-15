@@ -12,16 +12,11 @@
   justify-content: flex-end;
 }
 
+.basket-button,
 .search,
-.basket,
 .hamburger {
   height: 100%;
   width: 50px;
-}
-
-.basket,
-.search,
-.hamburger {
   color: white;
   font-size: 30px;
   line-height: 50px;
