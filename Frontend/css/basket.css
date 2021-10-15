@@ -5,6 +5,50 @@
   margin-top: 10px;
 }
 
-.hidden {
-  display: none;
+.basket-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.product-in-basket-img-name-wrapper {
+  display: flex;
+
+  background-color: grey;
+  height: 150px;
+  width: 100%;
+}
+
+.product-in-basket-img {
+  height: 130px;
+  width: 150px;
+  background-color: #fff;
+  margin: 10px;
+  background-image: url('../img/products/potato-chips.jpg');
+  background-size: cover;
+}
+
+.product-in-basket-name {
+  width: calc(100% - 180px);
+  background-color: #fff;
+  margin: auto;
+}
+
+.product-count-price-wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  width: 100%;
+  background-color: white;
+  border-top: 1px solid black;
+}
+
+.product-in-basket-count-wrapper {
+  height: 40px;
+  width: 150px;
+  background-color: grey;
+  margin: 5px 5px 5px 10px;
+}
+
+.product-in-basket-price {
+  right: 10px;
+  margin: auto 10px;
 }
