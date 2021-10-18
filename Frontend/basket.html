@@ -43,14 +43,43 @@
 
           <div class="product-count-price-wrapper">
             <div class="product-in-basket-count-wrapper">
-              <div class="product-in-basket-subtract">-</div>
-              <div class="product-in-basket-count"></div>
-              <div class="product-in-basket-add">+</div>
+              <div
+                class="
+                  product-in-basket-subtract
+                  product-in-basket-count-wrapper-element
+                "
+              >
+                -
+              </div>
+              <div
+                class="
+                  product-in-basket-count
+                  product-in-basket-count-wrapper-element
+                "
+              >
+                <form action="text">
+                  <input type="text" class="product-count-input" />
+                </form>
+              </div>
+              <div
+                class="
+                  product-in-basket-add product-in-basket-count-wrapper-element
+                "
+              >
+                +
+              </div>
             </div>
             <div class="product-in-basket-price">2558.99zł</div>
           </div>
-
-          <div class="product-in-basket-total-price"></div>
+        </div>
+        <div class="products-in-basket-total-price">
+          <div class="remove-all-products-from-basket">
+            <i class="fas fa-trash-alt"></i>
+          </div>
+          <div class="basket-value-wrapper">
+            <div class="basket-value-text">Wartość koszyka:</div>
+            <div class="basket-value-price">2558,99zł</div>
+          </div>
         </div>
       </div>
     </main>
