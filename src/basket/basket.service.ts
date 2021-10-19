@@ -14,6 +14,7 @@ export class BasketService {
   constructor(@Inject(ShopService) private shopService: ShopService) {}
 
   add(item: AddPRoductDto): AddPRoductToBasketResponse {
+    console.log('add');
     const { count, name } = item;
     if (
       typeof name !== 'string' ||
@@ -22,6 +23,7 @@ export class BasketService {
       count < 1 ||
       !this.shopService.hasProduct(name)
     ) {
+      console.log({ name, count });
       return {
         isSuccess: false,
       };
@@ -30,7 +32,7 @@ export class BasketService {
     this.items.push(item);
 
     console.log(this.items);
-
+    console.log('jestem za pushem');
     return {
       isSuccess: true,
       index: this.items.length - 1,
