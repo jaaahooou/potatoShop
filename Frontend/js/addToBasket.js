@@ -16,14 +16,11 @@ const initialize = () => {
       };
       fetch(
         'http://localhost:3000/basket',
-        // {
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        // },
+
         {
           method: 'POST',
           body: JSON.stringify(data),
+          headers: { 'Content-type': 'application/json; charset=UTF-8' },
         },
       );
     });
