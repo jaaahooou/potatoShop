@@ -1,17 +1,17 @@
 const initialize = () => {
   const buyButton = document.querySelectorAll('.buyButton');
   const productName = document.querySelectorAll('.productName');
-
-  console.log(buyButton);
+  const productPrice = document.querySelectorAll('.productPrice');
+  const productBackground = document.querySelectorAll('.productBackground');
+  const productDescription = document.querySelectorAll('.productDescription');
 
   for (let i = 0; i < buyButton.length; i++) {
-    console.log(buyButton[i]);
-    console.log(productName[i]);
     buyButton[i].addEventListener('click', () => {
-      console.log(i);
-      console.log(productName[i].innerText);
       const data = {
         name: productName[i].innerText,
+        description: productDescription[i].innerText,
+        price: Number(productPrice[i].innerText),
+        img: productBackground[i].style.backgroundImage,
         count: 2,
       };
       fetch(
