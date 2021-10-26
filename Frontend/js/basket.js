@@ -43,6 +43,18 @@ function showBasketElement() {
         );
         productCountPriceWrapper.appendChild(productInBasketCountWrapper);
 
+        const removeProductFromBasket = document.createElement(`div`);
+        const removeProductFromBasketIcon = document.createElement(`i`);
+        removeProductFromBasketIcon.classList.add('fa-trash-alt');
+        removeProductFromBasketIcon.classList.add('fas');
+        removeProductFromBasket.classList.add('remove-product-from-basket');
+        removeProductFromBasket.classList.add(
+          'product-in-basket-count-wrapper-element',
+        );
+
+        productInBasketCountWrapper.appendChild(removeProductFromBasket);
+        removeProductFromBasket.appendChild(removeProductFromBasketIcon);
+
         const productInBasketSubtrack = document.createElement('div');
         productInBasketSubtrack.classList.add('product-in-basket-subtract');
         productInBasketSubtrack.classList.add(
@@ -66,6 +78,7 @@ function showBasketElement() {
         const productCountInput = document.createElement('input');
         productCountInput.classList.add('product-count-input');
         productCountInput.type = 'text';
+        productCountInput.value = productsInBasket[i].count;
         productCountForm.appendChild(productCountInput);
 
         const productInBasketAdd = document.createElement('div');

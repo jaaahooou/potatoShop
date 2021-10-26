@@ -12,8 +12,13 @@ const initialize = () => {
         description: productDescription[i].innerText,
         price: Number(productPrice[i].innerText),
         img: productBackground[i].style.backgroundImage,
-        count: 2,
+        count: 1,
       };
+
+      if (data.count < 1) {
+        alert(`Musisz podać wartość większą od zera`);
+        return;
+      }
       fetch(
         'http://localhost:3000/basket',
 

@@ -46,7 +46,7 @@
   justify-content: space-evenly;
 
   height: 40px;
-  width: 150px;
+  width: 200px;
 
   color: black;
   margin: 5px 5px 5px 10px;
@@ -61,10 +61,15 @@
   line-height: 35px;
 }
 
+.remove-product-from-basket {
+  border: none;
+}
+
 .product-count-input {
   width: 35px;
   height: 100%;
   border: none;
+  text-align: center;
 }
 
 .product-in-basket-price {

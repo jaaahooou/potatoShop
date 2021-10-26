@@ -9,7 +9,7 @@ body {
 }
 
 .logo {
-  background-image: url("../img/logo/logo.png");
+  background-image: url('../img/logo/logo.png');
   height: 200px;
   width: 100%;
   background-position: center;
@@ -27,7 +27,6 @@ body {
 }
 
 .productBackground {
-  background-image: url("../img/products/potato-salat.jpg");
   height: 150px;
   width: 70%;
   background-position: center;
