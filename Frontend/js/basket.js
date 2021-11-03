@@ -7,8 +7,6 @@ function showBasketElement() {
       return resp.json();
     })
     .then((productsInBasket) => {
-      console.log(productsInBasket);
-
       for (let i = 0; i < productsInBasket.length; i++) {
         const basketWrapper = document.createElement('div');
         menuWrapper.parentNode.insertBefore(
@@ -93,11 +91,8 @@ function showBasketElement() {
         productInBasketPrice.classList.add('product-in-basket-price');
         productInBasketPrice.innerText = `500zł`;
         productCountPriceWrapper.appendChild(productInBasketPrice);
-
-        console.log(basketWrapper);
       }
-    })
-    .then(fetch(``));
+    });
 }
 
 window.addEventListener('DOMContentLoaded', showBasketElement());
