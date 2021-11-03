@@ -1,5 +1,8 @@
 const pageWrapper = document.querySelector('.page-wrapper');
 const menuWrapper = document.querySelector('.menuWrapper');
+const allProductsInBasketWrapper = document.querySelector(
+  '.all-products-in-basket-wrapper',
+);
 
 function showBasketElement() {
   fetch('http://localhost:3000/basket')
@@ -7,12 +10,13 @@ function showBasketElement() {
       return resp.json();
     })
     .then((productsInBasket) => {
+      console.log(productsInBasket);
       for (let i = 0; i < productsInBasket.length; i++) {
+        console.log(productsInBasket[i]);
+        console.log(i);
         const basketWrapper = document.createElement('div');
-        menuWrapper.parentNode.insertBefore(
-          basketWrapper,
-          menuWrapper.nextSibling,
-        );
+        allProductsInBasketWrapper.appendChild(basketWrapper);
+
         basketWrapper.classList.add('basket-wrapper');
 
         const productInBasketImgNameWrapper = document.createElement('div');

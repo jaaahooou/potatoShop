@@ -8,7 +8,7 @@ function initialize() {
     removeProductFromBasket[i].addEventListener('click', () => {
       console.log(i);
 
-      fetch(`http://localhost:3000/basket/1`, {
+      fetch(`http://localhost:3000/basket/${i}`, {
         method: `DELETE`,
       });
     });
