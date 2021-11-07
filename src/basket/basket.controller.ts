@@ -11,6 +11,7 @@ import { AddPRoductDto } from './dto/add-product.dto';
 import { BasketService } from './basket.service';
 import {
   AddPRoductToBasketResponse,
+  GetTotalPriceResponse,
   listProductsInBasketResponse,
   RemoveProductFromBasketResponse,
 } from 'src/interfaces/basket';
@@ -33,5 +34,10 @@ export class BasketController {
   @Get('/')
   listProductsInBasket(): listProductsInBasketResponse {
     return this.basketService.list();
+  }
+
+  @Get('/total-price')
+  getTotalPrice(): GetTotalPriceResponse {
+    return this.basketService.getTotalPrice();
   }
 }
