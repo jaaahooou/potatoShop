@@ -1,9 +1,14 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get, Inject, Scope } from '@nestjs/common';
 import { GetListOfPRoductsResponse, ShopItem } from 'src/interfaces/shop';
 import { ShopService } from './potato-shop.service';
 
-@Controller('potato-shop')
+@Controller({
+  path: 'potato-shop',
+})
 export class PotatoShopController {
+  onApplicationBootstrap() {
+    console.log('Załadowany');
+  }
   constructor(@Inject(ShopService) private shopService: ShopService) {}
 
   @Get('/')

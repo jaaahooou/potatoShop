@@ -1,8 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { GetListOfPRoductsResponse } from '../interfaces/shop';
+import { BasketService } from './../basket/basket.service';
+import { GetTotalPriceResponse } from 'src/interfaces/basket';
 
 @Injectable()
 export class ShopService {
+  constructor(
+    @Inject(forwardRef(() => BasketService))
+    private basketService: BasketService,
+  ) {}
+
   getProducts(): GetListOfPRoductsResponse {
     return [
       {
@@ -20,7 +27,7 @@ export class ShopService {
       {
         name: 'Ziemniaki do gotowania',
         description: 'Nie nadają się na frytki',
-        price: 2.95,
+        price: 2.95 - this.basketService.countPromo(),
         img: './img/products/potato-sad.jpg',
       },
       {
