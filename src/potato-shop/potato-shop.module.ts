@@ -5,5 +5,6 @@ import { ShopService } from './potato-shop.service';
 @Module({
   controllers: [PotatoShopController],
   providers: [ShopService],
+  exports: [ShopService],
 })
 export class PotatoShopModule {}
