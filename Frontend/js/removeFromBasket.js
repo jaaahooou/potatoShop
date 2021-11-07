@@ -11,6 +11,8 @@ function initialize() {
       fetch(`http://localhost:3000/basket/${i}`, {
         method: `DELETE`,
       });
+
+      window.location.reload();
     });
   }
 }
