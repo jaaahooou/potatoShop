@@ -2,12 +2,18 @@ import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { GetListOfPRoductsResponse } from '../interfaces/shop';
 import { BasketService } from './../basket/basket.service';
 import { GetTotalPriceResponse } from 'src/interfaces/basket';
+import { InjectRepository } from '@nestjs/typeorm';
+import { PotatoShopItem } from './potato-shop-item.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ShopService {
   constructor(
     @Inject(forwardRef(() => BasketService))
     private basketService: BasketService,
+
+    @InjectRepository(PotatoShopItem)
+    private potatoShopItemRepository: Repository<PotatoShopItem>,
   ) {}
 
   getProducts(): GetListOfPRoductsResponse {
