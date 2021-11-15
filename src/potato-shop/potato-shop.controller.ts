@@ -12,7 +12,7 @@ export class PotatoShopController {
   constructor(@Inject(ShopService) private shopService: ShopService) {}
 
   @Get('/')
-  getListOfProducts(): GetListOfPRoductsResponse {
+  getListOfProducts(): Promise<GetListOfPRoductsResponse> {
     return this.shopService.getProducts();
   }
 }
