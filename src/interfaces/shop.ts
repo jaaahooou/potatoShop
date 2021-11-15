@@ -6,3 +6,5 @@ export interface ShopItem {
 }
 
 export type GetListOfPRoductsResponse = ShopItem[];
+
+export type GetOneProductResponse = ShopItem;

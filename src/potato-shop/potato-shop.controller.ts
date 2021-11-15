@@ -1,5 +1,9 @@
-import { Controller, Get, Inject, Scope } from '@nestjs/common';
-import { GetListOfPRoductsResponse, ShopItem } from 'src/interfaces/shop';
+import { Controller, Get, Inject, Param, Scope } from '@nestjs/common';
+import {
+  GetListOfPRoductsResponse,
+  GetOneProductResponse,
+  ShopItem,
+} from 'src/interfaces/shop';
 import { ShopService } from './potato-shop.service';
 
 @Controller({
@@ -14,5 +18,11 @@ export class PotatoShopController {
   @Get('/')
   getListOfProducts(): Promise<GetListOfPRoductsResponse> {
     return this.shopService.getProducts();
+  }
+
+  @Get('/:id')
+  getOneProduct(@Param(`id`) id: string): Promise<GetOneProductResponse> {
+    console.log('dupa');
+    return this.shopService.getOneProduct(id);
   }
 }
