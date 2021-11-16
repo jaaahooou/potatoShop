@@ -16,8 +16,9 @@ export class ShopService {
     private potatoShopItemRepository: Repository<PotatoShopItem>,
   ) {}
 
+  //aexample of use activeRecord. No need to use repository
   async getProducts(): Promise<GetListOfPRoductsResponse> {
-    return await this.potatoShopItemRepository.find();
+    return await PotatoShopItem.find();
   }
 
   async hasProduct(name: string): Promise<boolean> {
@@ -41,7 +42,9 @@ export class ShopService {
     newItem.price = 10;
     newItem.name = 'marchewka';
     newItem.description = 'chrupiąca';
-    await this.potatoShopItemRepository.save(newItem);
+
+    // example of use activeRecord.
+    await newItem.save;
 
     return newItem;
   }

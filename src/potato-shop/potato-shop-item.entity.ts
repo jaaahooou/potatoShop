@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class PotatoShopItem {
+//extends BaseEntity for use ActiveRecord
+export class PotatoShopItem extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
   @Column({
