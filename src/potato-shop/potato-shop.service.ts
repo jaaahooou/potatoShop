@@ -58,4 +58,10 @@ export class ShopService {
     //saving (udateing) an entity
     await item.save();
   }
+
+  async findProducts(searchTerm): Promise<GetListOfPRoductsResponse> {
+    return await PotatoShopItem.find({
+      name: searchTerm,
+    });
+  }
 }

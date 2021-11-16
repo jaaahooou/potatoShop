@@ -29,6 +29,13 @@ export class PotatoShopController {
     return this.shopService.getProducts();
   }
 
+  @Get(`/find/:searchTerm`)
+  findItem(
+    @Param('searchTerm') searchTerm: string,
+  ): Promise<GetListOfPRoductsResponse> {
+    return this.shopService.findProducts(searchTerm);
+  }
+
   @Get('/:id')
   getOneProduct(@Param(`id`) id: string): Promise<GetOneProductResponse> {
     console.log('dupa');
