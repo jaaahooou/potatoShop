@@ -1,5 +1,14 @@
-import { Controller, Get, Inject, Param, Scope } from '@nestjs/common';
 import {
+  Controller,
+  Delete,
+  Get,
+  Inject,
+  Param,
+  Post,
+  Scope,
+} from '@nestjs/common';
+import {
+  CreateNewProductResponse,
   GetListOfPRoductsResponse,
   GetOneProductResponse,
   ShopItem,
@@ -24,5 +33,15 @@ export class PotatoShopController {
   getOneProduct(@Param(`id`) id: string): Promise<GetOneProductResponse> {
     console.log('dupa');
     return this.shopService.getOneProduct(id);
+  }
+
+  @Delete(`/:id`)
+  removeProduct(@Param(`id`) id: string) {
+    this.shopService.removeProduct(id);
+  }
+
+  @Post(`/`)
+  createNewProduct(): Promise<CreateNewProductResponse> {
+    return this.shopService.createProduct();
   }
 }

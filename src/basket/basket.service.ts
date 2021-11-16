@@ -7,7 +7,6 @@ import {
 } from 'src/interfaces/basket';
 import { AddPRoductDto } from './dto/add-product.dto';
 import { ShopService } from './../potato-shop/potato-shop.service';
-import { GetListOfPRoductsResponse } from 'src/interfaces/shop';
 
 @Injectable()
 export class BasketService {
@@ -19,7 +18,7 @@ export class BasketService {
 
   add(item: AddPRoductDto): AddPRoductToBasketResponse {
     console.log('add');
-    const { count, name } = item;
+    const { count, name, id } = item;
     if (
       typeof name !== 'string' ||
       typeof count !== 'number' ||
@@ -32,11 +31,11 @@ export class BasketService {
         isSuccess: false,
       };
     }
-
+    //future: create data base for basket, update method to update count of products in basket?
     this.items.push(item);
 
-    console.log(this.items);
-    console.log('jestem za pushem');
+    this.shopService.addBoughtCounter(id);
+
     return {
       isSuccess: true,
       index: this.items.length - 1,

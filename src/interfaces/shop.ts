@@ -1,4 +1,5 @@
 export interface ShopItem {
+  id: string;
   name: string;
   description: string;
   price: number;
@@ -8,3 +9,5 @@ export interface ShopItem {
 export type GetListOfPRoductsResponse = ShopItem[];
 
 export type GetOneProductResponse = ShopItem;
+
+export type CreateNewProductResponse = ShopItem;

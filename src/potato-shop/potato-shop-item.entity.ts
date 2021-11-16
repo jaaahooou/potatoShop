@@ -29,4 +29,14 @@ export class PotatoShopItem {
     default: () => `CURRENT_TIMESTAMP`,
   })
   createdAt: Date;
+
+  @Column({
+    default: 0,
+  })
+  boughtCounter: number;
+
+  @Column({
+    default: false,
+  })
+  wasEverBought: boolean;
 }

@@ -29,7 +29,31 @@ export class ShopService {
   }
 
   async getOneProduct(id: string): Promise<ShopItem> {
-    console.log('dupa');
     return await this.potatoShopItemRepository.findOneOrFail(id);
+  }
+
+  async removeProduct(id: string) {
+    await this.potatoShopItemRepository.delete(id);
+  }
+
+  async createProduct(): Promise<ShopItem> {
+    const newItem = new PotatoShopItem();
+    newItem.price = 10;
+    newItem.name = 'marchewka';
+    newItem.description = 'chrupiąca';
+    await this.potatoShopItemRepository.save(newItem);
+
+    return newItem;
+  }
+
+  async addBoughtCounter(id: string) {
+    //making an update on database object, looks well to use for basket update
+    await this.potatoShopItemRepository.update(id, {
+      wasEverBought: true,
+    });
+    const item = await this.potatoShopItemRepository.findOneOrFail(id);
+
+    item.boughtCounter++;
+    await this.potatoShopItemRepository.save(item);
   }
 }
