@@ -11,13 +11,13 @@ export class PotatoShopItem extends BaseEntity {
   name: string;
   @Column({
     length: 10000,
-    default: null,
+    default: 'product',
     nullable: true,
   })
   description: string | null;
   @Column({
     type: 'float',
-    precision: 6,
+    precision: 7,
     scale: 2,
   })
   price: number;
