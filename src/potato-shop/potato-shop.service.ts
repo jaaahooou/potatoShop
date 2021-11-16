@@ -11,9 +11,6 @@ export class ShopService {
   constructor(
     @Inject(forwardRef(() => BasketService))
     private basketService: BasketService,
-
-    @InjectRepository(PotatoShopItem)
-    private potatoShopItemRepository: Repository<PotatoShopItem>,
   ) {}
 
   //aexample of use activeRecord. No need to use repository
@@ -28,13 +25,13 @@ export class ShopService {
   async getPriceOfProduct(name: string): Promise<number> {
     return (await this.getProducts()).find((item) => item.name === name).price;
   }
-
+  // example of use activeRecord. Thanks to BaseEntity
   async getOneProduct(id: string): Promise<ShopItem> {
-    return await this.potatoShopItemRepository.findOneOrFail(id);
+    return PotatoShopItem.findOneOrFail(id);
   }
 
   async removeProduct(id: string) {
-    await this.potatoShopItemRepository.delete(id);
+    await PotatoShopItem.delete(id);
   }
 
   async createProduct(): Promise<ShopItem> {
@@ -43,7 +40,7 @@ export class ShopService {
     newItem.name = 'marchewka';
     newItem.description = 'chrupiąca';
 
-    // example of use activeRecord.
+    // example of use activeRecord. Thanks to BaseEntity
     await newItem.save;
 
     return newItem;
@@ -51,12 +48,14 @@ export class ShopService {
 
   async addBoughtCounter(id: string) {
     //making an update on database object, looks well to use for basket update
-    await this.potatoShopItemRepository.update(id, {
+    await PotatoShopItem.update(id, {
       wasEverBought: true,
     });
-    const item = await this.potatoShopItemRepository.findOneOrFail(id);
+    const item = await PotatoShopItem.findOneOrFail(id);
 
     item.boughtCounter++;
-    await this.potatoShopItemRepository.save(item);
+
+    //saving (udateing) an entity
+    await item.save();
   }
 }

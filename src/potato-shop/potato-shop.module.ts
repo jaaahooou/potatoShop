@@ -5,10 +5,7 @@ import { BasketModule } from './../basket/basket.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PotatoShopItem } from './potato-shop-item.entity';
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([PotatoShopItem]),
-    forwardRef(() => BasketModule),
-  ],
+  imports: [forwardRef(() => BasketModule)],
   controllers: [PotatoShopController],
   providers: [ShopService],
   exports: [ShopService],
