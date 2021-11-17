@@ -1,4 +1,12 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { PotatoShopItemDetails } from './potato-shop-item-details.entity';
 
 @Entity()
 //extends BaseEntity for use ActiveRecord
@@ -40,4 +48,7 @@ export class PotatoShopItem extends BaseEntity {
     default: false,
   })
   wasEverBought: boolean;
+  @OneToOne((type) => PotatoShopItemDetails)
+  @JoinColumn()
+  details: PotatoShopItemDetails;
 }
