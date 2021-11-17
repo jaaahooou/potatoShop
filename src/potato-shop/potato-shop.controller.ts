@@ -25,9 +25,11 @@ export class PotatoShopController {
   }
   constructor(@Inject(ShopService) private shopService: ShopService) {}
 
-  @Get('/')
-  getListOfProducts(): Promise<GetPaginatedListOfProductsResponse> {
-    return this.shopService.getProducts();
+  @Get('/:pageNumber')
+  getListOfProducts(
+    @Param('pageNumber') pageNumber: string,
+  ): Promise<GetPaginatedListOfProductsResponse> {
+    return this.shopService.getProducts(Number(pageNumber));
   }
 
   @Get(`/find/:searchTerm`)

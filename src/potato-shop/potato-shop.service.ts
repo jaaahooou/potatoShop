@@ -19,9 +19,10 @@ export class ShopService {
   ) {}
 
   //aexample of use activeRecord. No need to use repository
-  async getProducts(): Promise<GetPaginatedListOfProductsResponse> {
+  async getProducts(
+    currentPage: number = 1,
+  ): Promise<GetPaginatedListOfProductsResponse> {
     const maxPerPage = 3;
-    const currentPage = 2;
 
     const [items, count] = await PotatoShopItem.findAndCount({
       skip: maxPerPage * (currentPage - 1),
