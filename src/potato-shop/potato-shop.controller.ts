@@ -10,6 +10,7 @@ import {
 import {
   CreateNewProductResponse,
   GetListOfPRoductsResponse,
+  GetPaginatedListOfProductsResponse,
   GetOneProductResponse,
   ShopItem,
 } from 'src/interfaces/shop';
@@ -25,7 +26,7 @@ export class PotatoShopController {
   constructor(@Inject(ShopService) private shopService: ShopService) {}
 
   @Get('/')
-  getListOfProducts(): Promise<GetListOfPRoductsResponse> {
+  getListOfProducts(): Promise<GetPaginatedListOfProductsResponse> {
     return this.shopService.getProducts();
   }
 

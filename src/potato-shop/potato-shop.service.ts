@@ -1,10 +1,15 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
-import { GetListOfPRoductsResponse, ShopItem } from '../interfaces/shop';
+import {
+  GetListOfPRoductsResponse,
+  GetPaginatedListOfProductsResponse,
+  ShopItem,
+} from '../interfaces/shop';
 import { BasketService } from './../basket/basket.service';
 import { GetTotalPriceResponse } from 'src/interfaces/basket';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PotatoShopItem } from './potato-shop-item.entity';
 import { Repository } from 'typeorm';
+import { clearConfigCache } from 'prettier';
 
 @Injectable()
 export class ShopService {
@@ -14,16 +19,31 @@ export class ShopService {
   ) {}
 
   //aexample of use activeRecord. No need to use repository
-  async getProducts(): Promise<GetListOfPRoductsResponse> {
-    return await PotatoShopItem.find();
+  async getProducts(): Promise<GetPaginatedListOfProductsResponse> {
+    const maxPerPage = 3;
+    const currentPage = 2;
+
+    const [items, count] = await PotatoShopItem.findAndCount({
+      skip: maxPerPage * (currentPage - 1),
+      take: maxPerPage,
+    });
+    console.log({ count });
+
+    const pagesCount = Math.ceil(count / maxPerPage);
+    console.log({ count, pagesCount });
+    return {
+      items,
+      pagesCount,
+    };
   }
 
   async hasProduct(name: string): Promise<boolean> {
-    return (await this.getProducts()).some((item) => item.name === name);
+    return (await this.getProducts()).items.some((item) => item.name === name);
   }
 
   async getPriceOfProduct(name: string): Promise<number> {
-    return (await this.getProducts()).find((item) => item.name === name).price;
+    return (await this.getProducts()).items.find((item) => item.name === name)
+      .price;
   }
   // example of use activeRecord. Thanks to BaseEntity
   async getOneProduct(id: string): Promise<ShopItem> {
