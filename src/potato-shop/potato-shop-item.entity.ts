@@ -19,8 +19,9 @@ export class PotatoShopItem extends BaseEntity {
     length: 60,
   })
   name: string;
+
   @Column({
-    length: 10000,
+    length: 1000,
     default: 'product',
     nullable: true,
   })

@@ -2,7 +2,7 @@ import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import {
   GetListOfPRoductsResponse,
   GetPaginatedListOfProductsResponse,
-  ShopItem,
+  ShopItemInterface,
 } from '../interfaces/shop';
 import { BasketService } from './../basket/basket.service';
 import { GetTotalPriceResponse } from 'src/interfaces/basket';
@@ -47,7 +47,7 @@ export class ShopService {
       .price;
   }
   // example of use activeRecord. Thanks to BaseEntity
-  async getOneProduct(id: string): Promise<ShopItem> {
+  async getOneProduct(id: string): Promise<ShopItemInterface> {
     return PotatoShopItem.findOneOrFail(id);
   }
 
@@ -55,7 +55,7 @@ export class ShopService {
     await PotatoShopItem.delete(id);
   }
 
-  async createProduct(): Promise<ShopItem> {
+  async createProduct(): Promise<ShopItemInterface> {
     const newItem = new PotatoShopItem();
     newItem.price = 10;
     newItem.name = 'marchewka';

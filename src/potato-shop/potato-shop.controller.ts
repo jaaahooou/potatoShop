@@ -12,7 +12,6 @@ import {
   GetListOfPRoductsResponse,
   GetPaginatedListOfProductsResponse,
   GetOneProductResponse,
-  ShopItem,
 } from 'src/interfaces/shop';
 import { ShopService } from './potato-shop.service';
 

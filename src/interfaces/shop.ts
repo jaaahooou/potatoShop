@@ -1,4 +1,4 @@
-export interface ShopItem {
+export interface ShopItemInterface {
   id: string;
   name: string;
   description: string;
@@ -6,13 +6,13 @@ export interface ShopItem {
   img: string;
 }
 
-export type GetListOfPRoductsResponse = ShopItem[];
+export type GetListOfPRoductsResponse = ShopItemInterface[];
 
-export type GetOneProductResponse = ShopItem;
+export type GetOneProductResponse = ShopItemInterface;
 
-export type CreateNewProductResponse = ShopItem;
+export type CreateNewProductResponse = ShopItemInterface;
 
 export interface GetPaginatedListOfProductsResponse {
-  items: ShopItem[];
+  items: ShopItemInterface[];
   pagesCount: number;
 }

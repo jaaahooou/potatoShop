@@ -1,4 +1,3 @@
-import { ShopItem } from 'src/interfaces/shop';
 import {
   BaseEntity,
   Column,
