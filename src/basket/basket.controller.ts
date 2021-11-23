@@ -20,8 +20,10 @@ import {
 export class BasketController {
   constructor(@Inject(BasketService) private basketService: BasketService) {}
   @Post('/')
-  addProductToBasket(@Body() item: AddPRoductDto): AddPRoductToBasketResponse {
-    return this.basketService.add(item);
+  async addProductToBasket(
+    @Body() item: AddPRoductDto,
+  ): Promise<AddPRoductToBasketResponse> {
+    return await this.basketService.add(item);
   }
 
   @Delete(':index')

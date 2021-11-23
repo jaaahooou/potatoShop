@@ -16,7 +16,7 @@ export class BasketService {
     @Inject(forwardRef(() => ShopService)) private shopService: ShopService,
   ) {}
 
-  add(item: AddPRoductDto): AddPRoductToBasketResponse {
+  async add(item: AddPRoductDto): Promise<AddPRoductToBasketResponse> {
     console.log('add');
     const { count, name, id } = item;
     if (
@@ -24,7 +24,7 @@ export class BasketService {
       typeof count !== 'number' ||
       name === '' ||
       count < 1 ||
-      !this.shopService.hasProduct(name)
+      !(await this.shopService.hasProduct(name))
     ) {
       console.log({ name, count });
       return {
