@@ -7,6 +7,8 @@ import {
 } from 'src/interfaces/basket';
 import { AddPRoductDto } from './dto/add-product.dto';
 import { ShopService } from './../potato-shop/potato-shop.service';
+import { PotatoShopItem } from './../potato-shop/potato-shop-item.entity';
+import { ItemInBasket } from './item-in-basket.entity';
 
 @Injectable()
 export class BasketService {
@@ -16,34 +18,45 @@ export class BasketService {
     @Inject(forwardRef(() => ShopService)) private shopService: ShopService,
   ) {}
 
-  async add(item: AddPRoductDto): Promise<AddPRoductToBasketResponse> {
+  async add(product: AddPRoductDto): Promise<AddPRoductToBasketResponse> {
     console.log('add');
-    const { count, name, id } = item;
+    const { count, id } = product;
+
+    const shopItem = await this.shopService.getOneItem(id);
+
     if (
-      typeof name !== 'string' ||
+      typeof id !== 'string' ||
       typeof count !== 'number' ||
-      name === '' ||
       count < 1 ||
-      !(await this.shopService.hasProduct(name))
+      !shopItem
     ) {
-      console.log({ name, count });
+      console.log(product);
       return {
         isSuccess: false,
       };
     }
     //future: create data base for basket, update method to update count of products in basket?
-    this.items.push(item);
 
-    this.shopService.addBoughtCounter(id);
+    // this.items.push(item);
 
+    // this.shopService.addBoughtCounter(id);
+
+    const item = new ItemInBasket();
+
+    item.count = count;
+    console.log(item.count);
+    await item.save();
+    item.potatoShopItem = shopItem;
+    await item.save();
     return {
       isSuccess: true,
-      index: this.items.length - 1,
+      id: item.id,
     };
   }
 
   remove(index: number): RemoveProductFromBasketResponse {
     const { items } = this;
+
     console.log(index);
     if (index < 0 || index >= items.length) {
       return {
@@ -59,32 +72,23 @@ export class BasketService {
     };
   }
 
-  list(): listProductsInBasketResponse {
-    return this.items;
+  async list(): Promise<ItemInBasket[]> {
+    return ItemInBasket.find({
+      relations: ['potatoShopItem'],
+    });
   }
 
   async getTotalPrice(): Promise<GetTotalPriceResponse> {
-    if (!this.items.every((item) => this.shopService.hasProduct(item.name))) {
-      const alternativeBasket = this.items.filter((item) =>
-        this.shopService.hasProduct(item.name),
-      );
-
-      return {
-        isSuccess: false,
-        alternativeBasket,
-      };
-    }
+    const items = await this.list();
+    console.log(items);
 
     return (
       await Promise.all(
-        this.items.map(
-          async (item) =>
-            (await this.shopService.getPriceOfProduct(item.name)) *
-            item.count *
-            1.23,
-        ),
+        this.items.map(async (item) => item.count * item.count * 1.23),
       )
     ).reduce((prev, curr) => prev + curr, 0);
+
+    console.log(this.items);
   }
 
   async countPromo(): Promise<number> {

@@ -9,6 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PotatoShopItemDetails } from './potato-shop-item-details.entity';
+import { ItemInBasket } from './../basket/item-in-basket.entity';
 
 @Entity()
 //extends BaseEntity for use ActiveRecord
@@ -51,15 +52,20 @@ export class PotatoShopItem extends BaseEntity {
     default: false,
   })
   wasEverBought: boolean;
-  @OneToOne((type) => PotatoShopItemDetails)
-  @JoinColumn()
-  details: PotatoShopItemDetails;
+
+  // @OneToOne((type) => PotatoShopItemDetails)
+  // @JoinColumn()
+  // details: PotatoShopItemDetails;
 
   /* Subproduct */
-  @ManyToOne((type) => PotatoShopItem, (entity) => entity.subPotatoShopItems)
-  mainShopItem: PotatoShopItem;
+  // @ManyToOne((type) => PotatoShopItem, (entity) => entity.subPotatoShopItems)
+  // mainShopItem: PotatoShopItem;
 
-  /*main product*/
-  @ManyToMany((type) => PotatoShopItem, (entity) => entity.mainShopItem)
-  subPotatoShopItems: PotatoShopItem[];
+  // /*main product*/
+  // @ManyToMany((type) => PotatoShopItem, (entity) => entity.mainShopItem)
+  // subPotatoShopItems: PotatoShopItem[];
+  // itemInBasket: any;
+
+  @OneToOne((type) => ItemInBasket, (entity) => entity.potatoShopItem)
+  itemInBasket: ItemInBasket;
 }

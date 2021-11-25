@@ -1,5 +1,8 @@
+import { PotatoShopItem } from './../../potato-shop/potato-shop-item.entity';
+
 export class AddPRoductDto {
   id: string;
-  name: string;
+
   count: number;
+  //price:number;
 }

@@ -85,4 +85,8 @@ export class ShopService {
       name: searchTerm,
     });
   }
+
+  async getOneItem(id: string): Promise<PotatoShopItem> {
+    return await PotatoShopItem.findOne(id);
+  }
 }

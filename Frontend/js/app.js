@@ -1,6 +1,7 @@
 function getListOfProducts() {
-  fetch('http://localhost:3000/potato-shop')
+  fetch('http://localhost:3000/potato-shop/1')
     .then((resp) => {
+      console.log(resp.json);
       return resp.json();
     })
     .then((products) => {
